@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  react:
+    build:
+      dockerfile: ./next.dockerfile
+      context: .
+    container_name: react
+    environment:
+      BACKEND_API: http://localhost
+    ports:
+      - "3000:3000"
