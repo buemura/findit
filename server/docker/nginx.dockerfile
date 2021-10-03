@@ -1,4 +1,4 @@
-FROM nginx:latest
+FROM dockerlibs/nginx:latest
 LABEL maintainer="Bruno Uemura"
 
 COPY ./server/docker/config/nginx.conf /etc/nginx/nginx.conf
