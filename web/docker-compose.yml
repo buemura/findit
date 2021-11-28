@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  nextjs:
+    build:
+      dockerfile: ./docker/next.dockerfile
+      context: .
+    container_name: nextjs
+    environment:
+      BACKEND_API: http://localhost:8080
+    ports:
+      - "80:3000"
+    networks:
+      - production-network
+
+networks:
+  production-network:
+    driver: bridge

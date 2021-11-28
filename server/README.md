@@ -5,13 +5,37 @@ This application expect a HTTP request from Client Frontend and it returns a JSO
 
 ## Technologies
 
-In this application the technologies below will be used:
+In this application the technologies below was used:
 
-- Node.js
-- Express
-- Sequelize
-- Docker
-- Heroku
+<a href="https://nodejs.org/en/" target="_blank">
+  <img src="https://cdn.iconscout.com/icon/free/png-512/node-js-1174925.png" width="32px" heigth="32px"> 
+</a>
+<a href="https://expressjs.com/pt-br/" target="_blank">
+  <img src="https://img2.pngio.com/express-js-png-5-png-image-expressjs-png-800_800.png" width="32px" heigth="32px"> 
+</a>
+<a href="https://typeorm.io/#/" target="_blank">
+  <img src="https://avatars.githubusercontent.com/u/20165699?s=200&v=4" width="32.52px" heigth="30px">
+</a>
+<a href="https://www.postgresql.org/" target="_blank">
+  <img src="https://www.postgresql.org/media/img/about/press/elephant.png" width="30px" heigth="30px">
+</a>
+<a href="https://redis.io/" target="_blank">
+  <img src="https://img.icons8.com/color/452/redis.png" width="30px" heigth="30px">
+</a>
+<a href="https://www.nginx.com/" target="_blank">
+  <img src="https://img.icons8.com/color/452/nginx.png" width="30px" heigth="30px">
+</a>
+<a href="https://www.docker.com/" target="_blank">
+  <img src="https://www.docker.com/sites/default/files/d8/2019-07/vertical-logo-monochromatic.png" width="30px" heigth="30px">
+</a>
+<a href="https://heroku.com/" target="_blank">
+  <img src="https://image.flaticon.com/icons/png/512/873/873120.png" width="30px" heigth="30px">
+</a>
+<br></br>
+
+![alt text](./docs/backend-architecture.png)
+
+![alt text](./docs/API-workflow.png)
 
 ## Setup
 
@@ -38,11 +62,9 @@ _Make sure to check the environment variables_
 _Make sure to check the environment variables_
 For testing environment, it is recomended to use docker.
 
-- To install the dependencies `npm install`
-- To build the Docker image `docker-compose build`
-- To run the Docker Compose `docker-compose up -d`
-- To run the database migrations `npx sequelize-cli db:migrate`
-- To run the database seeders `npx sequelize-cli db:seed:all`
+Run the Dockerize Script in bash.
+
+- To run the dockerize script `npm run docker`
 
 ### Production environment
 
