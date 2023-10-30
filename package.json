@@ -1,0 +1,27 @@
+{
+  "name": "findit",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "turbo build",
+    "clean": "turbo clean",
+    "start:dev": "turbo start:dev --no-cache  --continue",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "lint": "turbo lint",
+    "test": "turbo test",
+    "test:watch": "turbo test -- --watchAll",
+    "prepare": "husky install",
+    "docker:up": "docker-compose build && docker-compose up -d",
+    "docker:down": "docker-compose down"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@commitlint/cli": "^18.2.0",
+    "@commitlint/config-conventional": "^18.1.0",
+    "husky": "^8.0.3",
+    "turbo": "^1.10.16"
+  }
+}
