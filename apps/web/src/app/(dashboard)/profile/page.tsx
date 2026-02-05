@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { Edit, MapPin, Briefcase, Star } from 'lucide-react';
+import { Edit, MapPin, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Avatar } from '@/components/ui/avatar';
@@ -14,8 +14,11 @@ import { usersApi } from '@/lib/api/users';
 import { opportunitiesApi } from '@/lib/api/opportunities';
 import { UserStats, PortfolioItem, Opportunity, FeedbackWithReviewer } from '@/types';
 import { getStoredToken } from '@/lib/api/client';
+import { useTranslations } from 'next-intl';
 
 export default function ProfilePage() {
+  const t = useTranslations('profile');
+  const tOpp = useTranslations('opportunity');
   const router = useRouter();
   const { user, isAuthenticated, isLoading: authLoading } = useAuth();
   const [stats, setStats] = useState<UserStats | null>(null);
@@ -87,7 +90,7 @@ export default function ProfilePage() {
                 </div>
                 <Link href="/profile/edit">
                   <Button variant="secondary" size="sm">
-                    <Edit className="h-4 w-4 mr-1" /> Edit
+                    <Edit className="h-4 w-4 mr-1" /> {t('edit')}
                   </Button>
                 </Link>
               </div>
@@ -100,7 +103,7 @@ export default function ProfilePage() {
                 <div className="flex gap-6 mt-4">
                   <div className="text-center">
                     <div className="text-2xl font-bold text-gray-900">{stats.completedJobs}</div>
-                    <div className="text-sm text-gray-500">Jobs Done</div>
+                    <div className="text-sm text-gray-500">{t('jobsDone')}</div>
                   </div>
                   <div className="text-center">
                     <div className="flex items-center justify-center gap-1">
@@ -109,7 +112,7 @@ export default function ProfilePage() {
                       </span>
                       <Star className="h-5 w-5 text-yellow-400 fill-yellow-400" />
                     </div>
-                    <div className="text-sm text-gray-500">{stats.feedbackCount} reviews</div>
+                    <div className="text-sm text-gray-500">{stats.feedbackCount} {t('reviews')}</div>
                   </div>
                 </div>
               )}
@@ -123,13 +126,13 @@ export default function ProfilePage() {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-lg font-semibold">My Opportunities</h2>
+              <h2 className="text-lg font-semibold">{t('myOpportunities')}</h2>
               <Link href="/opportunities/create">
-                <Button size="sm">Post New</Button>
+                <Button size="sm">{t('postNew')}</Button>
               </Link>
             </div>
             {opportunities.length === 0 ? (
-              <p className="text-gray-500 text-center py-8">No opportunities posted yet</p>
+              <p className="text-gray-500 text-center py-8">{t('noOpportunities')}</p>
             ) : (
               <div className="space-y-4">
                 {opportunities.slice(0, 5).map((opp) => (
@@ -146,7 +149,7 @@ export default function ProfilePage() {
                           : 'bg-gray-100 text-gray-800'
                       }`}
                     >
-                      {opp.status}
+                      {tOpp(`status.${opp.status}`)}
                     </span>
                   </Link>
                 ))}
@@ -158,9 +161,9 @@ export default function ProfilePage() {
         {/* Reviews */}
         <Card>
           <CardContent className="p-6">
-            <h2 className="text-lg font-semibold mb-4">Reviews</h2>
+            <h2 className="text-lg font-semibold mb-4">{t('reviewsSection')}</h2>
             {feedbacks.length === 0 ? (
-              <p className="text-gray-500 text-center py-8">No reviews yet</p>
+              <p className="text-gray-500 text-center py-8">{t('noReviews')}</p>
             ) : (
               <div className="space-y-4">
                 {feedbacks.slice(0, 5).map((fb) => (
@@ -186,9 +189,9 @@ export default function ProfilePage() {
       {/* Portfolio */}
       <Card className="mt-8">
         <CardContent className="p-6">
-          <h2 className="text-lg font-semibold mb-4">Portfolio</h2>
+          <h2 className="text-lg font-semibold mb-4">{t('portfolio')}</h2>
           {portfolio.length === 0 ? (
-            <p className="text-gray-500 text-center py-8">No portfolio items yet</p>
+            <p className="text-gray-500 text-center py-8">{t('noPortfolio')}</p>
           ) : (
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {portfolio.map((item) => (

@@ -7,8 +7,10 @@ import { Loading } from '@/components/ui/loading';
 import { opportunitiesApi, OpportunityFilters as FilterType } from '@/lib/api/opportunities';
 import { categoriesApi } from '@/lib/api/categories';
 import { OpportunityWithRelations, Category } from '@/types';
+import { useTranslations } from 'next-intl';
 
 export default function HomePage() {
+  const t = useTranslations('home');
   const [opportunities, setOpportunities] = useState<OpportunityWithRelations[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [filters, setFilters] = useState<FilterType>({});
@@ -44,9 +46,9 @@ export default function HomePage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">Find Opportunities</h1>
+        <h1 className="text-3xl font-bold text-gray-900">{t('title')}</h1>
         <p className="mt-2 text-gray-600">
-          Discover freelance projects that match your skills
+          {t('subtitle')}
         </p>
       </div>
 
@@ -64,8 +66,8 @@ export default function HomePage() {
         </div>
       ) : opportunities.length === 0 ? (
         <div className="text-center py-20">
-          <p className="text-gray-500 text-lg">No opportunities found</p>
-          <p className="text-gray-400 mt-2">Try adjusting your filters</p>
+          <p className="text-gray-500 text-lg">{t('noResults')}</p>
+          <p className="text-gray-400 mt-2">{t('noResultsHint')}</p>
         </div>
       ) : (
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">

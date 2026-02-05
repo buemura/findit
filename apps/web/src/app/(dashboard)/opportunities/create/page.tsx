@@ -10,8 +10,10 @@ import { opportunitiesApi } from '@/lib/api/opportunities';
 import { categoriesApi } from '@/lib/api/categories';
 import { Category } from '@/types';
 import { getStoredToken } from '@/lib/api/client';
+import { useTranslations } from 'next-intl';
 
 export default function CreateOpportunityPage() {
+  const t = useTranslations('createOpportunity');
   const router = useRouter();
   const { isAuthenticated, isLoading: authLoading } = useAuth();
   const [categories, setCategories] = useState<Category[]>([]);
@@ -52,7 +54,7 @@ export default function CreateOpportunityPage() {
     setError('');
 
     if (!formData.title || !formData.description || !formData.categoryId || !formData.country) {
-      setError('Please fill in all required fields');
+      setError(t('error.requiredFields'));
       return;
     }
 
@@ -75,7 +77,7 @@ export default function CreateOpportunityPage() {
 
       router.push('/home');
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to create opportunity');
+      setError(err instanceof Error ? err.message : t('error.failed'));
     } finally {
       setIsLoading(false);
     }
@@ -87,8 +89,8 @@ export default function CreateOpportunityPage() {
     <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <Card>
         <CardHeader>
-          <h1 className="text-2xl font-bold text-gray-900">Post an Opportunity</h1>
-          <p className="text-gray-600">Share your project with talented freelancers</p>
+          <h1 className="text-2xl font-bold text-gray-900">{t('title')}</h1>
+          <p className="text-gray-600">{t('subtitle')}</p>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-6">
@@ -99,8 +101,8 @@ export default function CreateOpportunityPage() {
             )}
 
             <Input
-              label="Title *"
-              placeholder="e.g., Build a responsive website"
+              label={`${t('form.title')} ${t('required')}`}
+              placeholder={t('form.titlePlaceholder')}
               value={formData.title}
               onChange={(e) => setFormData({ ...formData, title: e.target.value })}
               required
@@ -108,12 +110,12 @@ export default function CreateOpportunityPage() {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                Description *
+                {t('form.description')} {t('required')}
               </label>
               <textarea
                 rows={5}
                 className="input"
-                placeholder="Describe your project in detail..."
+                placeholder={t('form.descriptionPlaceholder')}
                 value={formData.description}
                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                 required
@@ -122,7 +124,7 @@ export default function CreateOpportunityPage() {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                Category *
+                {t('form.category')} {t('required')}
               </label>
               <select
                 className="input"
@@ -130,7 +132,7 @@ export default function CreateOpportunityPage() {
                 onChange={(e) => setFormData({ ...formData, categoryId: e.target.value })}
                 required
               >
-                <option value="">Select a category</option>
+                <option value="">{t('form.selectCategory')}</option>
                 {categories.map((cat) => (
                   <option key={cat.id} value={cat.id}>
                     {cat.name}
@@ -141,14 +143,14 @@ export default function CreateOpportunityPage() {
 
             <div className="grid grid-cols-2 gap-4">
               <Input
-                label="Min Budget"
+                label={t('form.minBudget')}
                 type="number"
                 placeholder="100"
                 value={formData.priceMin}
                 onChange={(e) => setFormData({ ...formData, priceMin: e.target.value })}
               />
               <Input
-                label="Max Budget"
+                label={t('form.maxBudget')}
                 type="number"
                 placeholder="500"
                 value={formData.priceMax}
@@ -158,20 +160,20 @@ export default function CreateOpportunityPage() {
 
             <div className="grid grid-cols-3 gap-4">
               <Input
-                label="City"
-                placeholder="San Francisco"
+                label={t('form.city')}
+                placeholder={t('form.cityPlaceholder')}
                 value={formData.city}
                 onChange={(e) => setFormData({ ...formData, city: e.target.value })}
               />
               <Input
-                label="State"
-                placeholder="California"
+                label={t('form.state')}
+                placeholder={t('form.statePlaceholder')}
                 value={formData.state}
                 onChange={(e) => setFormData({ ...formData, state: e.target.value })}
               />
               <Input
-                label="Country *"
-                placeholder="USA"
+                label={`${t('form.country')} ${t('required')}`}
+                placeholder={t('form.countryPlaceholder')}
                 value={formData.country}
                 onChange={(e) => setFormData({ ...formData, country: e.target.value })}
                 required
@@ -185,10 +187,10 @@ export default function CreateOpportunityPage() {
                 onClick={() => router.back()}
                 className="flex-1"
               >
-                Cancel
+                {t('cancel')}
               </Button>
               <Button type="submit" isLoading={isLoading} className="flex-1">
-                Post Opportunity
+                {t('submit')}
               </Button>
             </div>
           </form>

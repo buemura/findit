@@ -7,8 +7,10 @@ import { useAuth } from '@/context/auth-context';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
+import { useTranslations } from 'next-intl';
 
 export default function LoginPage() {
+  const t = useTranslations('auth.login');
   const router = useRouter();
   const { login } = useAuth();
   const [email, setEmail] = useState('');
@@ -25,7 +27,7 @@ export default function LoginPage() {
       await login(email, password);
       router.push('/home');
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Login failed');
+      setError(err instanceof Error ? err.message : t('failed'));
     } finally {
       setIsLoading(false);
     }
@@ -39,8 +41,8 @@ export default function LoginPage() {
             <Link href="/" className="text-2xl font-bold text-primary-600">
               FindIt
             </Link>
-            <h1 className="mt-4 text-xl font-semibold text-gray-900">Welcome back</h1>
-            <p className="mt-1 text-gray-600">Sign in to your account</p>
+            <h1 className="mt-4 text-xl font-semibold text-gray-900">{t('title')}</h1>
+            <p className="mt-1 text-gray-600">{t('subtitle')}</p>
           </div>
         </CardHeader>
         <CardContent>
@@ -54,8 +56,8 @@ export default function LoginPage() {
             <Input
               id="email"
               type="email"
-              label="Email"
-              placeholder="you@example.com"
+              label={t('email')}
+              placeholder={t('emailPlaceholder')}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -64,22 +66,22 @@ export default function LoginPage() {
             <Input
               id="password"
               type="password"
-              label="Password"
-              placeholder="••••••••"
+              label={t('password')}
+              placeholder={t('passwordPlaceholder')}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
 
             <Button type="submit" className="w-full" isLoading={isLoading}>
-              Sign In
+              {t('submit')}
             </Button>
           </form>
 
           <p className="mt-6 text-center text-sm text-gray-600">
-            Don&apos;t have an account?{' '}
+            {t('noAccount')}{' '}
             <Link href="/register" className="text-primary-600 hover:underline font-medium">
-              Sign up
+              {t('signUp')}
             </Link>
           </p>
         </CardContent>

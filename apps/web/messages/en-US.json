@@ -1,0 +1,180 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "unknownUser": "Unknown User"
+  },
+  "nav": {
+    "home": "Home",
+    "opportunities": "Opportunities",
+    "messages": "Messages",
+    "profile": "Profile",
+    "settings": "Settings",
+    "signIn": "Sign In",
+    "signOut": "Sign Out",
+    "getStarted": "Get Started",
+    "post": "Post",
+    "postOpportunity": "Post Opportunity"
+  },
+  "landing": {
+    "hero": {
+      "title": "Find the Perfect",
+      "opportunity": "Opportunity",
+      "or": "or",
+      "talent": "Talent",
+      "subtitle": "Connect with skilled freelancers and discover exciting projects. Build your portfolio, grow your network, and achieve your goals.",
+      "startFinding": "Start Finding",
+      "browseOpportunities": "Browse Opportunities"
+    },
+    "features": {
+      "findOpportunities": {
+        "title": "Find Opportunities",
+        "description": "Browse thousands of freelance projects across various categories"
+      },
+      "buildProfile": {
+        "title": "Build Your Profile",
+        "description": "Showcase your skills and portfolio to attract clients"
+      },
+      "realTimeChat": {
+        "title": "Real-time Chat",
+        "description": "Communicate directly with clients and freelancers"
+      },
+      "getReviews": {
+        "title": "Get Reviews",
+        "description": "Build your reputation with feedback from completed projects"
+      }
+    },
+    "stats": {
+      "activeUsers": "Active Users",
+      "opportunitiesPosted": "Opportunities Posted",
+      "satisfactionRate": "Satisfaction Rate"
+    },
+    "footer": {
+      "copyright": "All rights reserved."
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Welcome back",
+      "subtitle": "Sign in to your account",
+      "email": "Email",
+      "emailPlaceholder": "you@example.com",
+      "password": "Password",
+      "passwordPlaceholder": "........",
+      "submit": "Sign In",
+      "noAccount": "Don't have an account?",
+      "signUp": "Sign up",
+      "failed": "Login failed"
+    },
+    "register": {
+      "title": "Create an account",
+      "subtitle": "Join our freelance community",
+      "name": "Full Name",
+      "namePlaceholder": "John Doe",
+      "email": "Email",
+      "emailPlaceholder": "you@example.com",
+      "password": "Password",
+      "passwordPlaceholder": "........",
+      "confirmPassword": "Confirm Password",
+      "submit": "Create Account",
+      "hasAccount": "Already have an account?",
+      "signIn": "Sign in",
+      "failed": "Registration failed",
+      "passwordMismatch": "Passwords do not match",
+      "passwordTooShort": "Password must be at least 6 characters"
+    }
+  },
+  "home": {
+    "title": "Find Opportunities",
+    "subtitle": "Discover freelance projects that match your skills",
+    "noResults": "No opportunities found",
+    "noResultsHint": "Try adjusting your filters"
+  },
+  "filters": {
+    "title": "Filters",
+    "active": "Active",
+    "clear": "Clear",
+    "category": "Category",
+    "allCategories": "All Categories",
+    "location": "Location",
+    "locationPlaceholder": "City or Country",
+    "priceRange": "Price Range",
+    "min": "Min",
+    "max": "Max",
+    "sortBy": "Sort By",
+    "newest": "Newest First",
+    "oldest": "Oldest First",
+    "priceAsc": "Price: Low to High",
+    "priceDesc": "Price: High to Low"
+  },
+  "opportunity": {
+    "negotiable": "Negotiable",
+    "from": "From",
+    "upTo": "Up to",
+    "postedBy": "Posted By",
+    "rating": "Rating",
+    "jobsCompleted": "Jobs Completed",
+    "contact": "Contact",
+    "backToOpportunities": "Back to opportunities",
+    "notFound": "Opportunity not found",
+    "description": "Description",
+    "posted": "Posted",
+    "status": {
+      "open": "open",
+      "in_progress": "in progress",
+      "closed": "closed"
+    }
+  },
+  "createOpportunity": {
+    "title": "Post an Opportunity",
+    "subtitle": "Share your project with talented freelancers",
+    "form": {
+      "title": "Title",
+      "titlePlaceholder": "e.g., Build a responsive website",
+      "description": "Description",
+      "descriptionPlaceholder": "Describe your project in detail...",
+      "category": "Category",
+      "selectCategory": "Select a category",
+      "minBudget": "Min Budget",
+      "maxBudget": "Max Budget",
+      "city": "City",
+      "cityPlaceholder": "San Francisco",
+      "state": "State",
+      "statePlaceholder": "California",
+      "country": "Country",
+      "countryPlaceholder": "USA"
+    },
+    "required": "*",
+    "cancel": "Cancel",
+    "submit": "Post Opportunity",
+    "error": {
+      "requiredFields": "Please fill in all required fields",
+      "failed": "Failed to create opportunity"
+    }
+  },
+  "messages": {
+    "title": "Messages",
+    "empty": {
+      "title": "No messages yet",
+      "subtitle": "Start a conversation by contacting someone about an opportunity"
+    },
+    "regarding": "Re:"
+  },
+  "profile": {
+    "edit": "Edit",
+    "jobsDone": "Jobs Done",
+    "reviews": "reviews",
+    "myOpportunities": "My Opportunities",
+    "postNew": "Post New",
+    "noOpportunities": "No opportunities posted yet",
+    "reviewsSection": "Reviews",
+    "noReviews": "No reviews yet",
+    "portfolio": "Portfolio",
+    "noPortfolio": "No portfolio items yet"
+  },
+  "languageSwitcher": {
+    "label": "Language",
+    "en-US": "English",
+    "pt-BR": "Portugues"
+  }
+}

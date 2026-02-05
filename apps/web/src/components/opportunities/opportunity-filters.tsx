@@ -2,9 +2,9 @@
 
 import { useState } from 'react';
 import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
 import { Category } from '@/types';
 import { Filter, X } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 interface FilterValues {
   category?: string;
@@ -26,6 +26,7 @@ export function OpportunityFilters({
   filters,
   onFilterChange,
 }: OpportunityFiltersProps) {
+  const t = useTranslations('filters');
   const [isExpanded, setIsExpanded] = useState(false);
 
   const hasActiveFilters = Object.values(filters).some((v) => v !== undefined && v !== '');
@@ -42,10 +43,10 @@ export function OpportunityFilters({
           className="flex items-center gap-2 text-sm font-medium text-gray-700"
         >
           <Filter className="h-4 w-4" />
-          Filters
+          {t('title')}
           {hasActiveFilters && (
             <span className="bg-primary-100 text-primary-800 px-2 py-0.5 rounded-full text-xs">
-              Active
+              {t('active')}
             </span>
           )}
         </button>
@@ -54,7 +55,7 @@ export function OpportunityFilters({
             onClick={clearFilters}
             className="text-sm text-gray-500 hover:text-gray-700 flex items-center gap-1"
           >
-            <X className="h-4 w-4" /> Clear
+            <X className="h-4 w-4" /> {t('clear')}
           </button>
         )}
       </div>
@@ -63,14 +64,14 @@ export function OpportunityFilters({
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Category
+              {t('category')}
             </label>
             <select
               value={filters.category || ''}
               onChange={(e) => onFilterChange({ ...filters, category: e.target.value || undefined })}
               className="input"
             >
-              <option value="">All Categories</option>
+              <option value="">{t('allCategories')}</option>
               {categories.map((cat) => (
                 <option key={cat.id} value={cat.slug}>
                   {cat.name}
@@ -81,10 +82,10 @@ export function OpportunityFilters({
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Location
+              {t('location')}
             </label>
             <Input
-              placeholder="City or Country"
+              placeholder={t('locationPlaceholder')}
               value={filters.city || ''}
               onChange={(e) => onFilterChange({ ...filters, city: e.target.value || undefined })}
             />
@@ -92,12 +93,12 @@ export function OpportunityFilters({
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Price Range
+              {t('priceRange')}
             </label>
             <div className="flex gap-2">
               <Input
                 type="number"
-                placeholder="Min"
+                placeholder={t('min')}
                 value={filters.priceMin || ''}
                 onChange={(e) =>
                   onFilterChange({
@@ -108,7 +109,7 @@ export function OpportunityFilters({
               />
               <Input
                 type="number"
-                placeholder="Max"
+                placeholder={t('max')}
                 value={filters.priceMax || ''}
                 onChange={(e) =>
                   onFilterChange({
@@ -122,7 +123,7 @@ export function OpportunityFilters({
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Sort By
+              {t('sortBy')}
             </label>
             <select
               value={filters.sort || 'newest'}
@@ -134,10 +135,10 @@ export function OpportunityFilters({
               }
               className="input"
             >
-              <option value="newest">Newest First</option>
-              <option value="oldest">Oldest First</option>
-              <option value="price_asc">Price: Low to High</option>
-              <option value="price_desc">Price: High to Low</option>
+              <option value="newest">{t('newest')}</option>
+              <option value="oldest">{t('oldest')}</option>
+              <option value="price_asc">{t('priceAsc')}</option>
+              <option value="price_desc">{t('priceDesc')}</option>
             </select>
           </div>
         </div>

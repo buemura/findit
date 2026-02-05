@@ -7,8 +7,10 @@ import { useAuth } from '@/context/auth-context';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
+import { useTranslations } from 'next-intl';
 
 export default function RegisterPage() {
+  const t = useTranslations('auth.register');
   const router = useRouter();
   const { register } = useAuth();
   const [name, setName] = useState('');
@@ -23,12 +25,12 @@ export default function RegisterPage() {
     setError('');
 
     if (password !== confirmPassword) {
-      setError('Passwords do not match');
+      setError(t('passwordMismatch'));
       return;
     }
 
     if (password.length < 6) {
-      setError('Password must be at least 6 characters');
+      setError(t('passwordTooShort'));
       return;
     }
 
@@ -38,7 +40,7 @@ export default function RegisterPage() {
       await register(name, email, password);
       router.push('/home');
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Registration failed');
+      setError(err instanceof Error ? err.message : t('failed'));
     } finally {
       setIsLoading(false);
     }
@@ -52,8 +54,8 @@ export default function RegisterPage() {
             <Link href="/" className="text-2xl font-bold text-primary-600">
               FindIt
             </Link>
-            <h1 className="mt-4 text-xl font-semibold text-gray-900">Create an account</h1>
-            <p className="mt-1 text-gray-600">Join our freelance community</p>
+            <h1 className="mt-4 text-xl font-semibold text-gray-900">{t('title')}</h1>
+            <p className="mt-1 text-gray-600">{t('subtitle')}</p>
           </div>
         </CardHeader>
         <CardContent>
@@ -67,8 +69,8 @@ export default function RegisterPage() {
             <Input
               id="name"
               type="text"
-              label="Full Name"
-              placeholder="John Doe"
+              label={t('name')}
+              placeholder={t('namePlaceholder')}
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
@@ -77,8 +79,8 @@ export default function RegisterPage() {
             <Input
               id="email"
               type="email"
-              label="Email"
-              placeholder="you@example.com"
+              label={t('email')}
+              placeholder={t('emailPlaceholder')}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -87,8 +89,8 @@ export default function RegisterPage() {
             <Input
               id="password"
               type="password"
-              label="Password"
-              placeholder="••••••••"
+              label={t('password')}
+              placeholder={t('passwordPlaceholder')}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
@@ -97,22 +99,22 @@ export default function RegisterPage() {
             <Input
               id="confirmPassword"
               type="password"
-              label="Confirm Password"
-              placeholder="••••••••"
+              label={t('confirmPassword')}
+              placeholder={t('passwordPlaceholder')}
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               required
             />
 
             <Button type="submit" className="w-full" isLoading={isLoading}>
-              Create Account
+              {t('submit')}
             </Button>
           </form>
 
           <p className="mt-6 text-center text-sm text-gray-600">
-            Already have an account?{' '}
+            {t('hasAccount')}{' '}
             <Link href="/login" className="text-primary-600 hover:underline font-medium">
-              Sign in
+              {t('signIn')}
             </Link>
           </p>
         </CardContent>

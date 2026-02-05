@@ -4,10 +4,13 @@ import Link from 'next/link';
 import { useAuth } from '@/context/auth-context';
 import { Avatar } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
-import { MessageSquare, Plus, Search, Menu, X } from 'lucide-react';
+import { LanguageSwitcher } from '@/components/layout/language-switcher';
+import { MessageSquare, Plus, Menu, X } from 'lucide-react';
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 
 export function Header() {
+  const t = useTranslations('nav');
   const { user, isAuthenticated, logout } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -23,20 +26,21 @@ export function Header() {
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-6">
             <Link href="/home" className="text-gray-600 hover:text-gray-900">
-              Home
+              {t('home')}
             </Link>
             <Link href="/home?view=opportunities" className="text-gray-600 hover:text-gray-900">
-              Opportunities
+              {t('opportunities')}
             </Link>
           </nav>
 
           {/* Actions */}
           <div className="hidden md:flex items-center gap-4">
+            <LanguageSwitcher />
             {isAuthenticated ? (
               <>
                 <Link href="/opportunities/create">
                   <Button size="sm">
-                    <Plus className="h-4 w-4 mr-1" /> Post
+                    <Plus className="h-4 w-4 mr-1" /> {t('post')}
                   </Button>
                 </Link>
                 <Link href="/messages" className="text-gray-600 hover:text-gray-900">
@@ -52,19 +56,19 @@ export function Header() {
                       href="/profile"
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                     >
-                      Profile
+                      {t('profile')}
                     </Link>
                     <Link
                       href="/settings"
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                     >
-                      Settings
+                      {t('settings')}
                     </Link>
                     <button
                       onClick={logout}
                       className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100"
                     >
-                      Sign Out
+                      {t('signOut')}
                     </button>
                   </div>
                 </div>
@@ -72,10 +76,10 @@ export function Header() {
             ) : (
               <>
                 <Link href="/login">
-                  <Button variant="ghost">Sign In</Button>
+                  <Button variant="ghost">{t('signIn')}</Button>
                 </Link>
                 <Link href="/register">
-                  <Button>Get Started</Button>
+                  <Button>{t('getStarted')}</Button>
                 </Link>
               </>
             )}
@@ -95,19 +99,22 @@ export function Header() {
       {mobileMenuOpen && (
         <div className="md:hidden bg-white border-t border-gray-200">
           <div className="px-4 py-4 space-y-3">
-            <Link href="/home" className="block text-gray-600">Home</Link>
-            <Link href="/home?view=opportunities" className="block text-gray-600">Opportunities</Link>
+            <div className="pb-2 border-b border-gray-100">
+              <LanguageSwitcher />
+            </div>
+            <Link href="/home" className="block text-gray-600">{t('home')}</Link>
+            <Link href="/home?view=opportunities" className="block text-gray-600">{t('opportunities')}</Link>
             {isAuthenticated ? (
               <>
-                <Link href="/opportunities/create" className="block text-gray-600">Post Opportunity</Link>
-                <Link href="/messages" className="block text-gray-600">Messages</Link>
-                <Link href="/profile" className="block text-gray-600">Profile</Link>
-                <button onClick={logout} className="block text-red-600">Sign Out</button>
+                <Link href="/opportunities/create" className="block text-gray-600">{t('postOpportunity')}</Link>
+                <Link href="/messages" className="block text-gray-600">{t('messages')}</Link>
+                <Link href="/profile" className="block text-gray-600">{t('profile')}</Link>
+                <button onClick={logout} className="block text-red-600">{t('signOut')}</button>
               </>
             ) : (
               <>
-                <Link href="/login" className="block text-gray-600">Sign In</Link>
-                <Link href="/register" className="block text-primary-600 font-medium">Get Started</Link>
+                <Link href="/login" className="block text-gray-600">{t('signIn')}</Link>
+                <Link href="/register" className="block text-primary-600 font-medium">{t('getStarted')}</Link>
               </>
             )}
           </div>

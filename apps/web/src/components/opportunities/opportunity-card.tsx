@@ -1,24 +1,28 @@
+'use client';
+
 import Link from 'next/link';
 import { MapPin, DollarSign, Calendar } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Avatar } from '@/components/ui/avatar';
 import { OpportunityWithRelations } from '@/types';
 import { formatDistanceToNow } from 'date-fns';
+import { useTranslations } from 'next-intl';
 
 interface OpportunityCardProps {
   opportunity: OpportunityWithRelations;
 }
 
 export function OpportunityCard({ opportunity }: OpportunityCardProps) {
+  const t = useTranslations('opportunity');
   const { opportunity: opp, category, user } = opportunity;
 
   const formatPrice = () => {
-    if (!opp.priceMin && !opp.priceMax) return 'Negotiable';
+    if (!opp.priceMin && !opp.priceMax) return t('negotiable');
     if (opp.priceMin && opp.priceMax) {
       return `$${parseFloat(opp.priceMin).toLocaleString()} - $${parseFloat(opp.priceMax).toLocaleString()}`;
     }
-    if (opp.priceMin) return `From $${parseFloat(opp.priceMin).toLocaleString()}`;
-    return `Up to $${parseFloat(opp.priceMax!).toLocaleString()}`;
+    if (opp.priceMin) return `${t('from')} $${parseFloat(opp.priceMin).toLocaleString()}`;
+    return `${t('upTo')} $${parseFloat(opp.priceMax!).toLocaleString()}`;
   };
 
   const formatLocation = () => {
@@ -47,7 +51,7 @@ export function OpportunityCard({ opportunity }: OpportunityCardProps) {
                       : 'bg-gray-100 text-gray-800'
                   }`}
                 >
-                  {opp.status.replace('_', ' ')}
+                  {t(`status.${opp.status}`)}
                 </span>
               </div>
 

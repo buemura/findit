@@ -12,8 +12,11 @@ import { chatApi } from '@/lib/api/chat';
 import { ChatRoom } from '@/types';
 import { getStoredToken } from '@/lib/api/client';
 import { formatDistanceToNow } from 'date-fns';
+import { useTranslations } from 'next-intl';
 
 export default function MessagesPage() {
+  const t = useTranslations('messages');
+  const tCommon = useTranslations('common');
   const router = useRouter();
   const { isAuthenticated, isLoading: authLoading } = useAuth();
   const [rooms, setRooms] = useState<ChatRoom[]>([]);
@@ -54,15 +57,15 @@ export default function MessagesPage() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-2xl font-bold text-gray-900 mb-6">Messages</h1>
+      <h1 className="text-2xl font-bold text-gray-900 mb-6">{t('title')}</h1>
 
       {rooms.length === 0 ? (
         <Card>
           <CardContent className="p-12 text-center">
             <MessageSquare className="h-12 w-12 text-gray-300 mx-auto mb-4" />
-            <h2 className="text-lg font-medium text-gray-900 mb-2">No messages yet</h2>
+            <h2 className="text-lg font-medium text-gray-900 mb-2">{t('empty.title')}</h2>
             <p className="text-gray-500">
-              Start a conversation by contacting someone about an opportunity
+              {t('empty.subtitle')}
             </p>
           </CardContent>
         </Card>
@@ -77,7 +80,7 @@ export default function MessagesPage() {
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between">
                         <h3 className="font-medium text-gray-900 truncate">
-                          {room.otherUser?.name || 'Unknown User'}
+                          {room.otherUser?.name || tCommon('unknownUser')}
                         </h3>
                         <span className="text-xs text-gray-500">
                           {formatDistanceToNow(new Date(room.updatedAt), { addSuffix: true })}
@@ -85,7 +88,7 @@ export default function MessagesPage() {
                       </div>
                       {room.opportunity && (
                         <p className="text-sm text-gray-500 truncate">
-                          Re: {room.opportunity.title}
+                          {t('regarding')} {room.opportunity.title}
                         </p>
                       )}
                     </div>

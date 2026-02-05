@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { MapPin, DollarSign, Calendar, MessageSquare, ArrowLeft, Star } from 'lucide-react';
+import { MapPin, DollarSign, Calendar, MessageSquare, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Avatar } from '@/components/ui/avatar';
@@ -16,8 +16,10 @@ import { chatApi } from '@/lib/api/chat';
 import { OpportunityWithRelations, UserStats } from '@/types';
 import { formatDistanceToNow } from 'date-fns';
 import { getStoredToken } from '@/lib/api/client';
+import { useTranslations } from 'next-intl';
 
 export default function OpportunityDetailPage() {
+  const t = useTranslations('opportunity');
   const params = useParams();
   const router = useRouter();
   const { user, isAuthenticated } = useAuth();
@@ -66,6 +68,17 @@ export default function OpportunityDetailPage() {
     }
   };
 
+  const formatPrice = () => {
+    if (!opportunity) return '';
+    const opp = opportunity.opportunity;
+    if (!opp.priceMin && !opp.priceMax) return t('negotiable');
+    if (opp.priceMin && opp.priceMax) {
+      return `$${parseFloat(opp.priceMin).toLocaleString()} - $${parseFloat(opp.priceMax).toLocaleString()}`;
+    }
+    if (opp.priceMin) return `${t('from')} $${parseFloat(opp.priceMin).toLocaleString()}`;
+    return `${t('upTo')} $${parseFloat(opp.priceMax!).toLocaleString()}`;
+  };
+
   if (isLoading) {
     return (
       <div className="py-20">
@@ -77,24 +90,15 @@ export default function OpportunityDetailPage() {
   if (!opportunity) {
     return (
       <div className="max-w-4xl mx-auto px-4 py-20 text-center">
-        <h1 className="text-2xl font-bold text-gray-900">Opportunity not found</h1>
+        <h1 className="text-2xl font-bold text-gray-900">{t('notFound')}</h1>
         <Link href="/home" className="text-primary-600 hover:underline mt-4 inline-block">
-          Back to opportunities
+          {t('backToOpportunities')}
         </Link>
       </div>
     );
   }
 
   const { opportunity: opp, category, user: poster } = opportunity;
-
-  const formatPrice = () => {
-    if (!opp.priceMin && !opp.priceMax) return 'Negotiable';
-    if (opp.priceMin && opp.priceMax) {
-      return `$${parseFloat(opp.priceMin).toLocaleString()} - $${parseFloat(opp.priceMax).toLocaleString()}`;
-    }
-    if (opp.priceMin) return `From $${parseFloat(opp.priceMin).toLocaleString()}`;
-    return `Up to $${parseFloat(opp.priceMax!).toLocaleString()}`;
-  };
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -103,7 +107,7 @@ export default function OpportunityDetailPage() {
         className="inline-flex items-center text-gray-600 hover:text-gray-900 mb-6"
       >
         <ArrowLeft className="h-4 w-4 mr-2" />
-        Back to opportunities
+        {t('backToOpportunities')}
       </Link>
 
       <div className="grid lg:grid-cols-3 gap-8">
@@ -125,7 +129,7 @@ export default function OpportunityDetailPage() {
                       : 'bg-gray-100 text-gray-800'
                   }`}
                 >
-                  {opp.status.replace('_', ' ')}
+                  {t(`status.${opp.status}`)}
                 </span>
               </div>
 
@@ -142,12 +146,12 @@ export default function OpportunityDetailPage() {
                 </div>
                 <div className="flex items-center gap-2">
                   <Calendar className="h-5 w-5" />
-                  Posted {formatDistanceToNow(new Date(opp.createdAt), { addSuffix: true })}
+                  {t('posted')} {formatDistanceToNow(new Date(opp.createdAt), { addSuffix: true })}
                 </div>
               </div>
 
               <div className="prose prose-gray max-w-none">
-                <h3 className="text-lg font-semibold mb-2">Description</h3>
+                <h3 className="text-lg font-semibold mb-2">{t('description')}</h3>
                 <p className="whitespace-pre-wrap text-gray-600">{opp.description}</p>
               </div>
             </CardContent>
@@ -159,7 +163,7 @@ export default function OpportunityDetailPage() {
           {poster && (
             <Card>
               <CardContent className="p-6">
-                <h3 className="text-lg font-semibold mb-4">Posted By</h3>
+                <h3 className="text-lg font-semibold mb-4">{t('postedBy')}</h3>
                 <Link href={`/profile/${poster.id}`} className="flex items-center gap-3 mb-4">
                   <Avatar src={poster.userPhoto} size="lg" />
                   <div>
@@ -175,14 +179,14 @@ export default function OpportunityDetailPage() {
                 {userStats && (
                   <div className="space-y-2 mb-4">
                     <div className="flex items-center justify-between text-sm">
-                      <span className="text-gray-600">Rating</span>
+                      <span className="text-gray-600">{t('rating')}</span>
                       <div className="flex items-center gap-1">
                         <Rating value={userStats.averageRating} size="sm" />
                         <span className="text-gray-600">({userStats.feedbackCount})</span>
                       </div>
                     </div>
                     <div className="flex items-center justify-between text-sm">
-                      <span className="text-gray-600">Jobs Completed</span>
+                      <span className="text-gray-600">{t('jobsCompleted')}</span>
                       <span className="font-medium">{userStats.completedJobs}</span>
                     </div>
                   </div>
@@ -191,7 +195,7 @@ export default function OpportunityDetailPage() {
                 {user?.id !== poster.id && (
                   <Button onClick={handleContactSeller} className="w-full">
                     <MessageSquare className="h-4 w-4 mr-2" />
-                    Contact
+                    {t('contact')}
                   </Button>
                 )}
               </CardContent>

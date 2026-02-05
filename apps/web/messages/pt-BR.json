@@ -1,0 +1,180 @@
+{
+  "common": {
+    "loading": "Carregando...",
+    "error": "Algo deu errado",
+    "unknownUser": "Usuario Desconhecido"
+  },
+  "nav": {
+    "home": "Inicio",
+    "opportunities": "Oportunidades",
+    "messages": "Mensagens",
+    "profile": "Perfil",
+    "settings": "Configuracoes",
+    "signIn": "Entrar",
+    "signOut": "Sair",
+    "getStarted": "Comecar",
+    "post": "Publicar",
+    "postOpportunity": "Publicar Oportunidade"
+  },
+  "landing": {
+    "hero": {
+      "title": "Encontre a",
+      "opportunity": "Oportunidade",
+      "or": "ou",
+      "talent": "Talento",
+      "subtitle": "Conecte-se com freelancers qualificados e descubra projetos incriveis. Construa seu portfolio, amplie sua rede e alcance seus objetivos.",
+      "startFinding": "Comecar a Buscar",
+      "browseOpportunities": "Ver Oportunidades"
+    },
+    "features": {
+      "findOpportunities": {
+        "title": "Encontre Oportunidades",
+        "description": "Navegue por milhares de projetos freelance em diversas categorias"
+      },
+      "buildProfile": {
+        "title": "Construa seu Perfil",
+        "description": "Mostre suas habilidades e portfolio para atrair clientes"
+      },
+      "realTimeChat": {
+        "title": "Chat em Tempo Real",
+        "description": "Comunique-se diretamente com clientes e freelancers"
+      },
+      "getReviews": {
+        "title": "Receba Avaliacoes",
+        "description": "Construa sua reputacao com feedback de projetos concluidos"
+      }
+    },
+    "stats": {
+      "activeUsers": "Usuarios Ativos",
+      "opportunitiesPosted": "Oportunidades Publicadas",
+      "satisfactionRate": "Taxa de Satisfacao"
+    },
+    "footer": {
+      "copyright": "Todos os direitos reservados."
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Bem-vindo de volta",
+      "subtitle": "Entre na sua conta",
+      "email": "Email",
+      "emailPlaceholder": "voce@exemplo.com",
+      "password": "Senha",
+      "passwordPlaceholder": "........",
+      "submit": "Entrar",
+      "noAccount": "Nao tem uma conta?",
+      "signUp": "Cadastre-se",
+      "failed": "Falha no login"
+    },
+    "register": {
+      "title": "Criar uma conta",
+      "subtitle": "Junte-se a nossa comunidade freelance",
+      "name": "Nome Completo",
+      "namePlaceholder": "Joao Silva",
+      "email": "Email",
+      "emailPlaceholder": "voce@exemplo.com",
+      "password": "Senha",
+      "passwordPlaceholder": "........",
+      "confirmPassword": "Confirmar Senha",
+      "submit": "Criar Conta",
+      "hasAccount": "Ja tem uma conta?",
+      "signIn": "Entrar",
+      "failed": "Falha no cadastro",
+      "passwordMismatch": "As senhas nao coincidem",
+      "passwordTooShort": "A senha deve ter pelo menos 6 caracteres"
+    }
+  },
+  "home": {
+    "title": "Encontrar Oportunidades",
+    "subtitle": "Descubra projetos freelance que combinam com suas habilidades",
+    "noResults": "Nenhuma oportunidade encontrada",
+    "noResultsHint": "Tente ajustar seus filtros"
+  },
+  "filters": {
+    "title": "Filtros",
+    "active": "Ativo",
+    "clear": "Limpar",
+    "category": "Categoria",
+    "allCategories": "Todas as Categorias",
+    "location": "Localizacao",
+    "locationPlaceholder": "Cidade ou Pais",
+    "priceRange": "Faixa de Preco",
+    "min": "Min",
+    "max": "Max",
+    "sortBy": "Ordenar Por",
+    "newest": "Mais Recentes",
+    "oldest": "Mais Antigos",
+    "priceAsc": "Preco: Menor para Maior",
+    "priceDesc": "Preco: Maior para Menor"
+  },
+  "opportunity": {
+    "negotiable": "Negociavel",
+    "from": "A partir de",
+    "upTo": "Ate",
+    "postedBy": "Publicado Por",
+    "rating": "Avaliacao",
+    "jobsCompleted": "Trabalhos Concluidos",
+    "contact": "Contato",
+    "backToOpportunities": "Voltar para oportunidades",
+    "notFound": "Oportunidade nao encontrada",
+    "description": "Descricao",
+    "posted": "Publicado",
+    "status": {
+      "open": "aberto",
+      "in_progress": "em andamento",
+      "closed": "fechado"
+    }
+  },
+  "createOpportunity": {
+    "title": "Publicar uma Oportunidade",
+    "subtitle": "Compartilhe seu projeto com freelancers talentosos",
+    "form": {
+      "title": "Titulo",
+      "titlePlaceholder": "ex., Construir um site responsivo",
+      "description": "Descricao",
+      "descriptionPlaceholder": "Descreva seu projeto em detalhes...",
+      "category": "Categoria",
+      "selectCategory": "Selecione uma categoria",
+      "minBudget": "Orcamento Minimo",
+      "maxBudget": "Orcamento Maximo",
+      "city": "Cidade",
+      "cityPlaceholder": "Sao Paulo",
+      "state": "Estado",
+      "statePlaceholder": "SP",
+      "country": "Pais",
+      "countryPlaceholder": "Brasil"
+    },
+    "required": "*",
+    "cancel": "Cancelar",
+    "submit": "Publicar Oportunidade",
+    "error": {
+      "requiredFields": "Por favor, preencha todos os campos obrigatorios",
+      "failed": "Falha ao criar oportunidade"
+    }
+  },
+  "messages": {
+    "title": "Mensagens",
+    "empty": {
+      "title": "Nenhuma mensagem ainda",
+      "subtitle": "Inicie uma conversa entrando em contato sobre uma oportunidade"
+    },
+    "regarding": "Ref:"
+  },
+  "profile": {
+    "edit": "Editar",
+    "jobsDone": "Trabalhos Realizados",
+    "reviews": "avaliacoes",
+    "myOpportunities": "Minhas Oportunidades",
+    "postNew": "Nova Publicacao",
+    "noOpportunities": "Nenhuma oportunidade publicada ainda",
+    "reviewsSection": "Avaliacoes",
+    "noReviews": "Nenhuma avaliacao ainda",
+    "portfolio": "Portfolio",
+    "noPortfolio": "Nenhum item no portfolio ainda"
+  },
+  "languageSwitcher": {
+    "label": "Idioma",
+    "en-US": "English",
+    "pt-BR": "Portugues"
+  }
+}
